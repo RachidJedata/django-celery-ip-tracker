@@ -3,9 +3,9 @@ import os
 from celery import Celery
 
 # Set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alx_backend_security.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_celery_ip_tracker.settings')
 
-app = Celery('alx_backend_security')
+app = Celery('django_celery_ip_tracker')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
