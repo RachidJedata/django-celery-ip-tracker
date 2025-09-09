@@ -1,0 +1,8 @@
+
+services:
+  redis:
+    build: .
+    container_name: redis_django
+    ports:
+      - 6379:6379
+    restart: unless-stopped
