@@ -7,3 +7,6 @@ django-ip-geolocation==1.0.3
 requests>=2.31
 django-redis==6.0.0
 django-ratelimit>=4.1
+celery==5.5.3
+PyMySQL==1.1.0
+cryptography
