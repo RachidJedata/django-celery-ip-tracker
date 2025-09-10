@@ -74,13 +74,19 @@ WSGI_APPLICATION = "django_celery_ip_tracker.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+import os
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE'), # Name of the database inside MySQL
+        'USER': os.environ.get('MYSQL_USER'),      # User for the database
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'), # Password for the user
+        'HOST': 'db',          # The name of the database service in docker-compose.yml
+        'PORT': '3306',        # Default MySQL port
     }
 }
+
 
 
 # Password validation
@@ -132,7 +138,7 @@ RATELIMIT_USE_CACHE = 'default'  # Use default cache backend
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",  # Redis server URL (db=1)
+        "LOCATION": 'redis://redis:6379/1',  # Redis server URL (db=1)
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
@@ -141,8 +147,8 @@ CACHES = {
 }
 
 
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/1"
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/1"
+CELERY_BROKER_URL = 'redis://redis:6379/1'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/1'
 CELERY_BEAT_SCHEDULE = {
     "flag_suspicious_ips": {
         "task": "ip_tracking.tasks.flag_suspicious_ips",
