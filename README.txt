@@ -1,4 +1,4 @@
-# 🛰️ Django Celery IP Tracker
+# Django Celery IP Tracker
 
 This project is a **Django-based IP tracker** with background task processing using **Celery** and **Redis**.  
 It demonstrates how to track requests, flag suspicious IP addresses, and schedule background jobs — all orchestrated with **Docker Compose**.
